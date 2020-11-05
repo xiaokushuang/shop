@@ -6,29 +6,10 @@
         <span>CRM系统</span>
       </div>
     </a>
-    <!-- <div class="selectBox">
-      <el-select
-        size="mini"
-        class="selectType"
-        v-model="myValue"
-        placeholder="请选择"
-      >
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        >
-        </el-option>
-      </el-select>
-    </div> -->
     <el-popover placement="bottom-start" width="250" trigger="hover">
       <div class="loginType">
-        <li v-if="userMsg.username">{{ userMsg.username }}</li>
-        <li v-if="userMsg.email">{{ userMsg.email }}</li>
-        <li v-if="userMsg.role_list">
-          <el-tag v-for="(item,index) in userMsg.role_list" :key="index" size="mini" type="success">{{item.role_name}}</el-tag>
-        </li>
+        <li> userMsg.username</li>
+        <li> userMsg.email </li>
         <li @click="goToLogin()">退出登录</li>
       </div>
       <el-avatar :size="25" :src="imgUrl" slot="reference"></el-avatar>
@@ -52,7 +33,7 @@ export default {
     goToLogin() {
       localStorage.clear();
       this.$router.replace({
-        path: "/login"
+        path: "/"
       });
     }
   }
