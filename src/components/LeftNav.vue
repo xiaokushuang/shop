@@ -1,6 +1,6 @@
 <template>
   <div class="warp">
-    <el-menu  :default-active='$route.path' :router='true' style="height: 100%;">　　　　　　
+    <el-menu  :default-openeds="openeds" :default-active='$route.path' :router='true' style="height: 100%;">　　　　　　
       <div v-for="(item, index) in navlist" :key="index">
         <el-submenu
                 :index="index.toString()"
@@ -34,6 +34,7 @@
     name: "leftnav",
     data() {
       return {
+        openeds:["0","1","2","3"],
         roleList: [],
         permissionList: [],
         navlist: [
