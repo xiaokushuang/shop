@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "papaya-store-prod": {
+      "hosting": {
+        "fpp-crm-fe-test": [
+          "fpp-crm-fe-test"
+        ],
+        "fpp-crm-fe-prod": [
+          "fpp-crm-fe-prod"
+        ]
+      }
+    }
+  }
+}

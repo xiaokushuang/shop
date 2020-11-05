@@ -1,0 +1,5 @@
+**/node_modules
+/cloudbuild*.yaml
+/Dockerfile*
+/*.dockerfile
+/README.md

@@ -1,0 +1,118 @@
+.fromRow {
+  display: flex;
+  justify-content: flex-start;
+  .fromCol {
+    width: 25%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    &.protocol {
+    align-items: flex-start;
+    flex-direction: column;
+    }
+    &.large-col {
+      width: 50%;
+      .fromLabel {
+        flex: 3;
+      }
+      .fromContent {
+        flex: 18;
+      }
+    }
+    &.small-col {
+      width: 10%;
+    }
+    &.all-col {
+      width: 100%;
+    }
+    &.auto-col {
+      flex: 1;
+    }
+    &.endCol {
+      margin-left: auto;
+    }
+    &.autoCol {
+      width: auto;
+      padding-right: 0;
+    }
+    &.end-col {
+      justify-content: flex-end;
+    }
+    .fromLabel {
+      flex: 5;
+      color: #908585;
+      font-size: 15px;
+      text-align: right;
+    }
+    .fromContent {
+      margin-left: 15px;
+      flex: 12;
+    }
+    .formButt {
+      width: 100px;
+    }
+  }
+}
+.MLeft {
+  margin-top: 20px;
+  width: 100%;
+  .el-pagination {
+    text-align: right;
+  }
+}
+.distribution {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+.protocol {
+  padding: 20px;
+  .protocolContent {
+    width: 100%;
+    font-size: 14px;
+    line-height: 16px;
+    color: #303133;
+    padding-bottom: 10px;
+    span {
+      font-size: 16px;
+      // font-weight: bold;
+    }
+  }
+  .protocolUploadBox {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    .protocolUpload {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      &.noflex {
+        flex: none;
+        margin: 20px 20px 0;
+      }
+    }
+    .protocolButt {
+      flex: 1.71;
+      display: flex;
+      padding-right: 96px;
+      box-sizing: border-box;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    
+  }
+  .protocolButt {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+  }
+}
+.new-photo-col {
+  width: 100%;
+  height: 100%;
+  padding-left: 10px;
+}

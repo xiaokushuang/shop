@@ -1,0 +1,53 @@
+/*修改的element样式*/
+
+.userClass {
+
+  .el-select .el-input {
+    width: 130px;
+  }
+
+  .input-with-select .el-input-group__prepend {
+    background-color: #fff;
+  }
+
+}
+.userSelect .el-select-dropdown__item {
+  height: auto;
+}
+.roles-point {
+  .el-dropdown {
+    font-size: 24px;
+    color: #8996a3;
+  }
+}
+/*弹窗的国度效果*/
+.dialog-fade-enter-active .el-dialog,
+.dialog-fade-leave-active .el-dialog{
+  animation-fill-mode: forwards;
+  animation-duration: 0.3s;
+}
+.el-dialog__header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #dee2e6;
+}
+.el-dialog {
+  max-height: calc(100vh - 80px);
+  margin-top: 40px !important;
+}
+.el-dialog__body {
+  max-height: calc(100vh - 135px);
+  overflow: auto;
+}
+.el-dialog__wrapper {
+  overflow-y: hidden;
+}
+.el-checkbox__label {
+  display: inline-grid;
+  white-space: pre-line;
+  word-wrap: break-word;
+  overflow: hidden;
+  line-height: 20px;
+}
+.el-aside {
+  overflow: auto;
+}

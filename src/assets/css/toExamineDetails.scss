@@ -1,0 +1,138 @@
+.data-row {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  // padding-bottom: 30px;
+  .data-col {
+    width: 33%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 0;
+    // overflow: hidden; //超出的文本隐藏
+    // text-overflow: ellipsis; //溢出用省略号显示
+    // white-space: nowrap; //溢出不换行
+    &.label {
+      align-items: flex-start;
+      line-height: 33px;
+    }
+    &.small-col {
+      width: 10%;
+    }
+    &.large-col {
+      width: 50%;
+    }
+    &.all-col {
+      width: 100%;
+    }
+    &.column {
+      flex-direction: column;
+      align-items: flex-start;
+      .data-content {
+        margin-left: 0;
+        margin-top: 15px;
+      }
+    }
+    .data-label {
+      display: inline;
+      color: #908585;
+      font-size: 15px;
+    }
+    .data-content {
+      display: inline;
+      margin-left: 15px;
+    }
+    .data-text-area {
+      display: inline;
+      margin-left: 15px;
+      width: 50%;
+    }
+  }
+  .data-Img-col {
+    width: 33%;
+    padding: 10px 0;
+    &.small-col {
+      width: 10%;
+    }
+    &.large-col {
+      width: 50%;
+    }
+    &.all-col {
+      width: 100%;
+    }
+    .data-Img-title {
+      padding: 10px 0;
+      .data-Img-label {
+        display: inline;
+        color: #908585;
+        font-size: 15px;
+      }
+      .data-Img-content {
+        display: inline;
+        margin-left: 15px;
+      }
+    }
+    .data-Img-box {
+      width: 179px;
+      height: 116px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #F6F6F6;
+      cursor: pointer;
+      img {
+        display: block;
+        margin: auto;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+}
+.butt-width {
+  width: 200px;
+  margin: 30px auto 0;
+  display: flex;
+  justify-content: space-between;
+  &.return-pages {
+    justify-content: center;
+  }
+}
+.MLeft {
+  margin-top: 20px;
+  .el-pagination {
+    text-align: right;
+  }
+}
+.return-visit {
+  margin-top: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: #f9f9f9 solid 1px;
+  .return-visit-title {
+    padding: 15px 0 15px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #ebebeb;
+  }
+  .return-visit-box {
+    padding: 0 25px;
+    .return-visit-box-main {
+      margin: 25px 0;
+      height: 500px;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    .return-visit-noData {
+      width: 100%;
+      height: 60px;
+      text-align: center;
+      line-height: 60px;
+    }
+    .return-visit-lable {
+      line-height: 20px;
+      font-size: 16px;
+      padding: 5px 0;
+    }
+  }
+}

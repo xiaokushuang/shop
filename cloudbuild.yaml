@@ -1,0 +1,95 @@
+steps:
+- id: install
+  name: "gcr.io/cloud-builders/npm"
+  args: ["install"]
+
+- id: build
+  name: "gcr.io/cloud-builders/npm"
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    [[ $BRANCH_NAME == 'testing' ]] && npm run testing || echo 'skip...'
+    [[ $BRANCH_NAME == 'master' ]] && npm run build || echo 'skip...'
+
+- id: deploy
+  name: 'gcr.io/papaya-crm/firebase'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    [[ $BRANCH_NAME == 'testing' ]] && firebase deploy -P papaya-store-prod --only hosting:fpp-crm-fe-test || echo 'skip...'
+    [[ $BRANCH_NAME == 'master' ]] && firebase deploy -P papaya-store-prod --only hosting:fpp-crm-fe-prod || echo 'skip...'
+
+# - name: 'gcr.io/cloud-builders/docker'
+#   entrypoint: 'bash'
+#   args: ['-c', 'docker pull gcr.io/papaya-store-prod/$REPO_NAME-build:latest || exit 0']
+
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: [
+#     'build',
+#     '-f', 'build.dockerfile',
+#     '-t', 'gcr.io/papaya-store-prod/$REPO_NAME-build:latest',
+#     '--cache-from', 'gcr.io/papaya-store-prod/$REPO_NAME-build:latest',
+#     '.',
+#   ]
+
+# - name: "gcr.io/cloud-builders/docker"
+#   args: ["push", "gcr.io/papaya-store-prod/$REPO_NAME-build:latest"]
+
+# - name: "gcr.io/papaya-store-prod/$REPO_NAME-build"
+#   volumes:
+#     - name: 'vol1'
+#       path: '/persistent_volume'
+#   entrypoint: 'bash'
+#   args:
+#   - '-c'
+#   - |
+#     cp -r /app/dist/. /persistent_volume/
+
+# - name: 'gcr.io/cloud-builders/docker'
+#   volumes:
+#     - name: 'vol1'
+#       path: '/persistent_volume'
+#   entrypoint: 'bash'
+#   args:
+#   - '-c'
+#   - |
+#     cp -r /persistent_volume /workspace/dist
+
+#     if [[ $BRANCH_NAME == 'testing' ]]
+#     then
+#       sed -i s'/npm run build/npm run testing/g' build.dockerfile
+#     fi
+    
+#     docker build \
+#     -t gcr.io/papaya-store-prod/$REPO_NAME:latest \
+#     -t gcr.io/papaya-store-prod/$REPO_NAME:${_DEPLOY_ENV}-$SHORT_SHA \
+#     --cache-from gcr.io/papaya-store-prod/$REPO_NAME-build:latest .
+
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['push', 'gcr.io/papaya-store-prod/$REPO_NAME']
+
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   args: [
+#     'source', 'repos', 'clone', 'fpp-devops', '--project=papaya-hub'
+#   ]
+
+# - name: 'gcr.io/cloud-builders/git'
+#   args: [
+#     '--git-dir=./fpp-devops/.git',
+#     '--work-tree=./fpp-devops',
+#     'checkout',
+#     '0915-1651'
+#   ]
+
+# - name: 'gcr.io/papaya-store-prod/helm'
+#   args: [
+#     'upgrade',
+#     '--install',
+#     '--set', 'image.tag=${_DEPLOY_ENV}-$SHORT_SHA',
+#     '$REPO_NAME-${_DEPLOY_ENV}',
+#     './fpp-devops/crm/$REPO_NAME'
+#   ]
+#   env:
+#   - 'CLOUDSDK_CONTAINER_CLUSTER=fpp-new-200807'

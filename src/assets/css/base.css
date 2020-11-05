@@ -1,0 +1,207 @@
+/**
+* CSS reset
+*/
+
+*,
+:after,
+:before {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+blockquote,
+body,
+dd,
+div,
+dl,
+dt,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+legend,
+li,
+ol,
+p,
+td,
+textarea,
+th,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+fieldset,
+img {
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  /*border-radius: 2px;*/
+}
+
+li {
+  list-style: none;
+}
+
+caption,
+th {
+  text-align: left;
+}
+
+q:after,
+q:before {
+  content: "";
+}
+
+input:password {
+  ime-mode: disabled;
+}
+
+:focus {
+  outline: 0;
+}
+
+/*ie浏览器清除输入框右边的叉号，密码框的小眼睛*/
+::-ms-clear,
+::-ms-reveal {
+  display: none;
+}
+body,
+html {
+  min-height: 100%;
+}
+
+body {
+  /* -webkit-user-select: none;
+  -webkit-text-size-adjust: none;
+  user-select: none; */
+}
+
+a,
+img {
+  -webkit-touch-callout: none;
+  border: none;
+}
+
+body {
+  background: none !important;
+  /*overflow-x: hidden;*/
+  color: #333;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-size: 14px;
+  line-height: 1;
+  font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, STHeiTi,
+    sans-serif;
+}
+
+input {
+  line-height: normal;
+}
+
+a {
+  color: #0ae;
+  text-decoration: none;
+  transition: none;
+}
+label {
+  cursor: pointer;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+}
+/* 滚动条的滑轨背景颜色 */
+::-webkit-scrollbar-track {
+  /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0); */
+  border-radius: 10px;
+  background-color: #f2f2f200;
+}
+/* 滑块颜色 */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3); */
+  background-color: #c2c2c2;
+}
+::-webkit-scrollbar-thumb:hover{
+  animation: opacityFrames 1s;
+  background-color: #ababab;
+}
+@keyframes opacityFrames {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/*html, body{*/
+/*scroll-behavior: smooth;*/
+/*}*/
+.bg_primary {
+  background: #ffe12c;
+}
+.col_pri {
+  color: #296294;
+}
+.clearfix:after,
+.clearfix:before {
+  content: ".";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+
+.flex_c {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.vjs-big-play-button {
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%);
+}
+
+.swiper-pagination-bullet {
+  margin: 0 6px !important;
+}
+.musician .swiper-pagination-bullet {
+  margin: 10px !important;
+}
+.gray {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+}
+.NumberWord {
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+}
+.protocolUploadBox .NumberWord{
+  text-align: center;
+}
