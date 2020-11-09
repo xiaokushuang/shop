@@ -5,49 +5,49 @@
   <Pabody>
     <div class="uploadWrapper">
       <vuedraggable
+              v-model="imgList"
               class="vue-draggable"
               :class="{ single: isSingle, maxHidden: isMaxHidden }"
-              v-model="imgList"
               tag="ul"
               draggable=".draggable-item"
               @start="onDragStart"
               @end="onDragEnd"
       >
-        <!-- 拖拽元素 -->
-        <li
-                v-for="(item, index) in imgList"
-                :key="item + index"
-                class="draggable-item"
-                :style="{ width: width + 'px', height: height + 'px' }"
-        >
-          <el-image :src="item" :preview-src-list="[item]"></el-image>
-          <div class="shadow" @click="onRemoveHandler(index)">
-            <i class="el-icon-delete"></i>
-          </div>
-        </li>
-        <!-- 上传按钮 -->
-        <el-upload
-                slot="footer"
-                ref="uploadRef"
-                class="uploadBox"
-                :style="{ width: width + 'px', height: height + 'px' }"
-                action="https://httpbin.org/post"
-                accept=".jpg,.jpeg,.png,.gif"
-                :show-file-list="false"
-                :multiple="!isSingle"
-                :limit="limit"
-                :before-upload="beforeUpload"
-                :on-success="onSuccessUpload"
-                :on-exceed="onExceed"
-        >
-          <i class="el-icon-plus uploadIcon">
-            <span class="uploading" v-show="isUploading">正在上传...</span>
-            <span
-                    v-if="!isUploading && limit && limit!==99 && !isSingle"
-                    class="limitTxt"
-            >最多{{ limit }}张</span>
-          </i>
-        </el-upload>
+          <!-- 拖拽元素 -->
+          <li
+                  v-for="(item, index) in imgList"
+                  :key="item + index"
+                  class="draggable-item"
+                  :style="{ width: width + 'px', height: height + 'px' }"
+          >
+            <el-image :src="item" :preview-src-list="[item]"></el-image>
+            <div class="shadow" @click="onRemoveHandler(index)">
+              <i class="el-icon-delete"></i>
+            </div>
+          </li>
+          <!-- 上传按钮 -->
+          <el-upload
+                  slot="footer"
+                  ref="uploadRef"
+                  class="uploadBox"
+                  :style="{ width: width + 'px', height: height + 'px' }"
+                  action="https://httpbin.org/post"
+                  accept=".jpg,.jpeg,.png,.gif"
+                  :show-file-list="false"
+                  :multiple="!isSingle"
+                  :limit="limit"
+                  :before-upload="beforeUpload"
+                  :on-success="onSuccessUpload"
+                  :on-exceed="onExceed"
+          >
+            <i class="el-icon-plus uploadIcon">
+              <span class="uploading" v-show="isUploading">正在上传...</span>
+              <span
+                      v-if="!isUploading && limit && limit!==99 && !isSingle"
+                      class="limitTxt"
+              >最多{{ limit }}张</span>
+            </i>
+          </el-upload>
       </vuedraggable>
     </div>
   </Pabody>
@@ -55,18 +55,17 @@
 
 <script>
   import vuedraggable from 'vuedraggable'
-  import { validImgUpload } from '../../assets/js/validate'
+  import {validImgUpload} from '../../assets/js/validate'
   import lrz from 'lrz' // 前端图片压缩插件
   // import tools from '@/src/assets/js/tools'
 
   export default {
     name: 'index',
-
     props: {
       // 图片数据(图片url组成的数组) 通过v-model传递
       value: {
         type: Array,
-        default () {
+        default() {
           return []
         }
       },
@@ -102,7 +101,7 @@
       }
     },
 
-    data () {
+    data() {
       return {
         // headers: { token: getToken() },
         isUploading: false, // 正在上传状态
@@ -113,10 +112,10 @@
     computed: {
       // 图片数组数据
       imgList: {
-        get () {
+        get() {
           return this.value
         },
-        set (val) {
+        set(val) {
           if (val.length < this.imgList.length) {
             // 判断是删除图片时同步el-upload数据
             this.syncElUpload(val)
@@ -126,14 +125,14 @@
         }
       },
       // 控制达到最大限制时隐藏上传按钮
-      isMaxHidden () {
+      isMaxHidden() {
         return this.imgList.length >= this.limit
       }
     },
 
     watch: {
       value: {
-        handler (val) {
+        handler(val) {
           if (this.isFirstMount && this.value.length > 0) {
             this.syncElUpload()
           }
@@ -142,7 +141,7 @@
       }
     },
 
-    mounted () {
+    mounted() {
       if (this.value.length > 0) {
         this.syncElUpload()
       }
@@ -150,7 +149,7 @@
 
     methods: {
       // 同步el-upload数据
-      syncElUpload (val) {
+      syncElUpload(val) {
         const imgList = val || this.imgList
         this.$refs.uploadRef.uploadFiles = imgList.map((v, i) => {
           return {
@@ -163,12 +162,12 @@
         this.isFirstMount = false
       },
       // 上传图片之前
-      beforeUpload (file) {
+      beforeUpload(file) {
         this.isFirstMount = false
         if (this.useCompress) {
           // 图片压缩
           return new Promise((resolve, reject) => {
-            lrz(file, { width: 1920 }).then((rst) => {
+            lrz(file, {width: 1920}).then((rst) => {
               file = rst.file
             }).always(() => {
               if (validImgUpload(file, this.size)) {
@@ -189,7 +188,7 @@
         }
       },
       // 上传完单张图片
-      onSuccessUpload (res, file, fileList) {
+      onSuccessUpload(res, file, fileList) {
         // 这里需要根据你自己的接口返回数据格式和层级来自行修改
         if (res.files) {
           // 判断接口上传成功
@@ -200,26 +199,29 @@
         } else {
           // 判断接口上传失败
           this.syncElUpload()
-          this.$message({ type: 'error', message: res.msg })
+          this.$message({type: 'error', message: res.msg})
         }
         this.isUploading = false
       },
       // 移除单张图片
-      onRemoveHandler (index) {
+      onRemoveHandler(index) {
         this.$confirm('确定删除该图片?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         })
             .then(() => {
-              this.imgList = this.imgList.filter((v, i) => {
+              this.imgList = this.imgList.splice(index, 1)
+              /*this.imgList = this.imgList.filter((i) => {
+                debugger
                 return i !== index
-              })
+              })*/
             })
-            .catch(() => {})
+            .catch(() => {
+            })
       },
       // 超限
-      onExceed () {
+      onExceed() {
         this.$refs.uploadRef.abort() // 取消剩余接口请求
         this.syncElUpload()
         this.$message({
@@ -227,20 +229,23 @@
           message: `图片超限，最多可上传${this.limit}张图片`
         })
       },
-      onDragStart (e) {
+      onDragStart(e) {
         e.target.classList.add('hideShadow')
       },
-      onDragEnd (e) {
+      onDragEnd(e) {
         e.target.classList.remove('hideShadow')
+        let item = this.imgList.splice(e.oldDraggableIndex,1)
+        this.imgList.splice(e.newDraggableIndex,0,item[0])
       }
     },
 
-    components: { vuedraggable }
+    components: {vuedraggable}
   }
 </script>
 
 <style lang="scss">
-   .el-upload {
+
+  .el-upload {
     width: 100%;
     height: 100%;
   }
@@ -291,7 +296,7 @@
         position: absolute;
         top: 0;
         right: 0;
-        background-color: rgba(0,0,0,.5);
+        background-color: rgba(0, 0, 0, .5);
         opacity: 0;
         transition: opacity .3s;
         color: #fff;
@@ -328,6 +333,7 @@
       }
     }
   }
+
   // el-image
   .el-image-viewer__wrapper {
     .el-image-viewer__mask {
